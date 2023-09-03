@@ -7,6 +7,8 @@ import json, websocket, time, re, requests
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
+# MADE BY COXY57 ON DISCORD
+# MADE BY COXY57 ON DISCORD
 
 # This is made for rbxgold.com to join the rains automatically 
 
