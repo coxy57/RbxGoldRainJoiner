@@ -50,7 +50,7 @@ class AutoJoinerHandler:
             return False
         taskid = captcha_created.json()['taskId']
         while True:
-            r = requests.post('https://api.capsolver.com/getTaskResult',json={'clientKey': self.apikey,'taskId': taskid})
+            r = requests.post('https://api.capsolver.com/getTaskResult',json={'clientKey': self.apikey,'taskId': taskid}).json()
             if r['status'] == "ready":
                 return r['solution']['gRecaptchaResponse']
     
