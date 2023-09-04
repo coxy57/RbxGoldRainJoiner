@@ -47,7 +47,7 @@ class AutoJoinerHandler:
             "clientKey": self.apikey,
             "task": {
                 "type": "HCaptchaTaskProxyLess",
-                "websiteURL": "https://hcaptcha.com/",
+                "websiteURL": "https://rbxgold.com/",
                 "websiteKey": self.website_key,
                 "userAgent": self.user_agent
             }
