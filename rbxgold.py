@@ -47,7 +47,7 @@ class AutoJoinerHandler:
                 "userAgent": self.user_agent
             }
         })
-        if "taskid" not in captcha_created.text:
+        if "taskId" not in captcha_created.text:
             return False
         taskid = captcha_created.json()['taskId']
         while True:
@@ -58,6 +58,7 @@ class AutoJoinerHandler:
 
 
 auto_join = AutoJoinerHandler(APIKEY)
+
 
 
 class rblxGoldHandler(websocket.WebSocketApp):
