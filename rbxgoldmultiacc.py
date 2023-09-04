@@ -86,14 +86,19 @@ class rblxGoldHandler(websocket.WebSocketApp):
             "http": "http://%s" % r
         } if USE_PROXIES else None
         if captcha:
+            print('solved captcha!')
             join_game = requests.post('https://api.rbxgold.com/api/rain/rain-join',
-                                      params={
-                                          'hCaptchaToken': captcha
-                                      },
-                                      cookies={
-                                          'SID': sid
-                                      },
-                                      proxies=rape_nigga)
+                params={
+                    'hCaptchaToken': captcha
+                },
+                cookies={
+                    'SID': sid
+                },
+                json={},
+                headers={
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+                },
+                proxies=rape_nigga)
             if join_game.status_code == 200:
                 print('%s joined rain!' % sid)
             else:
