@@ -86,12 +86,17 @@ class rblxGoldHandler(websocket.WebSocketApp):
                 # gets the rain amount
                 captcha = auto_join.solve_captcha()
                 if captcha:
+                    print('solved captcha!')
                     join_game = requests.post('https://api.rbxgold.com/api/rain/rain-join',
                                               params={
                                                   'hCaptchaToken': captcha
                                               },
                                               cookies={
                                                   'SID': SID
+                                              },
+                                              json={},
+                                              headers={
+                                                  "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
                                               })
                     if join_game.status_code == 200:
                         print('joined rain!')
