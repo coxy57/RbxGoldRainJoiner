@@ -10,7 +10,7 @@ import json, websocket, time, re, requests
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
 
-# This is made for rbxgold.com to join the rains automatically 
+# This is made for rbxgold.com to join the rains automatically
 
 
 x = "MADE BY coxy57 ON DISCORD"
@@ -24,7 +24,7 @@ APIKEY = ""
 # Press ctrl + shift + i
 # Go to the application tab, if it doesnt show up click the >> on the top and it should show
 # Click on cookies, then go to rbxgold.com, then copy the value next to the SID in the name column
-# Paste it in between the "" in the SID = 
+# Paste it in between the "" in the SID =
 SID = ""
 
 
@@ -42,7 +42,7 @@ class AutoJoinerHandler:
             "clientKey": self.apikey,
             "task": {
                 "type": "HCaptchaTaskProxyLess",
-                "websiteURL": "https://hcaptcha.com/",
+                "websiteURL": "https://rbxgold.com/",
                 "websiteKey": self.website_key,
                 "userAgent": self.user_agent
             }
