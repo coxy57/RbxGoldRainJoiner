@@ -1,4 +1,4 @@
-import json, websocket, time, re, requests
+import json, websocket, time, re, requests, base64, random
 
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
@@ -59,18 +59,21 @@ class AutoJoinerHandler:
 
 auto_join = AutoJoinerHandler(APIKEY)
 
-
-
 class rblxGoldHandler(websocket.WebSocketApp):
     def __init__(self):
+        self.headers = {
+            'Origin': 'https://rbxgold.com',
+            'Sec-WebSocket-Key': base64.b64encode(random.randbytes(16)).decode('utf-8'),
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        }
         super().__init__(
             url="wss://api.rbxgold.com/socket.io/?EIO=4&transport=websocket",
-            on_message=self.on_message,
-            on_open=self.on_open,
-            on_error=self.on_error)
+            on_message=lambda ws, msg: self.message(ws,msg),
+            on_open=lambda ws: self.open(ws),
+            header=self.headers)
         self.rain_started = False
 
-    def on_message(self, ws, message):
+    def message(self, ws, message):
         if not all(v in globals() for v in ("x", "y", "z")): return
         message = str(message).strip()
         if "2" == message:
@@ -110,13 +113,11 @@ class rblxGoldHandler(websocket.WebSocketApp):
             else:
                 pass
 
-    def on_open(self, ws):
+    def open(self, ws):
         ws.send('40')
         time.sleep(1)
         ws.send('42["rain-join"]')
 
-    def on_error(self, ws, error):
-        pass
 
 
 r = rblxGoldHandler()
