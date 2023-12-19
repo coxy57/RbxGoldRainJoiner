@@ -1,5 +1,4 @@
-import json, websocket, time, re, requests, threading, random
-
+import json, websocket, time, re, requests, threading, random, base64, os
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
@@ -31,7 +30,6 @@ SIDS = ["", "", ""]
 PROXY_FILE = "proxies.txt"
 # if you want to use proxies or not
 USE_PROXIES = False
-
 
 class AutoJoinerHandler:
     def __init__(self, apikey):
@@ -68,14 +66,27 @@ auto_join = AutoJoinerHandler(APIKEY)
 
 class rblxGoldHandler(websocket.WebSocketApp):
     def __init__(self):
+        self.headers = {
+            'Origin': 'https://rbxgold.com',
+            'Sec-WebSocket-Key': base64.b64encode(random.randbytes(16)).decode('utf-8'),
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        }
         super().__init__(
             url="wss://api.rbxgold.com/socket.io/?EIO=4&transport=websocket",
             on_message=self.on_message,
             on_open=self.on_open,
-            on_error=self.on_error)
+            on_error=self.on_error,
+            header=self.headers)
         self.rain_started = False
-        self.proxies = open('proxies.txt').readlines() if USE_PROXIES else None
-
+        self.proxies = self.get_proxies() if USE_PROXIES else None
+    def get_proxies(self):
+        direc = os.path.dirname(os.path.abspath(__file__))
+        proxies = os.path.join(direc, "proxies.txt")
+        if os.path.exists(proxies):
+            p = open(proxies,'r')
+            return p.readlines()
+        else:
+            return None
     def handle_joiner(self, sid):
         if sid == "": return False
         captcha = auto_join.solve_captcha()
