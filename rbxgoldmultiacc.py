@@ -94,9 +94,7 @@ class rblxGoldHandler(websocket.WebSocketApp):
         captcha = auto_join.solve_captcha()
         if self.proxies:
             r = random.choice(self.proxies)
-        n = {
-            "http": "http://%s" % r,
-        } if USE_PROXIES else None
+        n = "http://%s" % r if USE_PROXIES else None
         if captcha:
             print('solved captcha!')
             join_game = tls_session.post('https://api.rbxgold.com/api/rain/rain-join',
