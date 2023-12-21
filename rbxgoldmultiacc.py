@@ -134,7 +134,7 @@ class rblxGoldHandler(websocket.WebSocketApp):
                 # gets the rain amount
                 print('joining on %s accs' % len(SIDS))
                 for i in SIDS:
-                    threading.Thread(target=self.handle_joiner, args=(i,))
+                    threading.Thread(target=self.handle_joiner, args=(i,)).start()
                 print('thread completion!')
             elif msg['status'] == "pending" and self.rain_started == True:
                 self.rain_started = False
