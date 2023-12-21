@@ -1,4 +1,4 @@
-import json, websocket, time, re, requests, threading, random, base64, os
+import json, websocket, time, re, tls_client, requests, threading, random, base64, os
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
@@ -63,6 +63,7 @@ class AutoJoinerHandler:
 
 auto_join = AutoJoinerHandler(APIKEY)
 
+tls_session = tls_client.Session(client_identifier="chrome112")
 
 
 class rblxGoldHandler(websocket.WebSocketApp):
@@ -99,7 +100,7 @@ class rblxGoldHandler(websocket.WebSocketApp):
         } if USE_PROXIES else None
         if captcha:
             print('solved captcha!')
-            join_game = requests.post('https://api.rbxgold.com/api/rain/rain-join',
+            join_game = tls_session.post('https://api.rbxgold.com/api/rain/rain-join',
                 params={
                     'hCaptchaToken': captcha
                 },
