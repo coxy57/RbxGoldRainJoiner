@@ -1,4 +1,4 @@
-import json, websocket, time, re, requests, base64, random
+import json, websocket, time, re, requests, base64, random, tls_client
 
 # MADE BY COXY57 ON DISCORD
 # MADE BY COXY57 ON DISCORD
@@ -26,6 +26,8 @@ APIKEY = ""
 # Click on cookies, then go to rbxgold.com, then copy the value next to the SID in the name column
 # Paste it in between the "" in the SID =
 SID = ""
+
+tls_session = tls_client.Session(client_identifier="chrome112")
 
 
 class AutoJoinerHandler:
@@ -91,7 +93,7 @@ class rblxGoldHandler(websocket.WebSocketApp):
                 captcha = auto_join.solve_captcha()
                 if captcha:
                     print('solved captcha!')
-                    join_game = requests.post('https://api.rbxgold.com/api/rain/rain-join',
+                    join_game = tls_session.post('https://api.rbxgold.com/api/rain/rain-join',
                                               params={
                                                   'hCaptchaToken': captcha
                                               },
