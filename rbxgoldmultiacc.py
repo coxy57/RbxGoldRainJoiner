@@ -94,9 +94,8 @@ class rblxGoldHandler(websocket.WebSocketApp):
         captcha = auto_join.solve_captcha()
         if self.proxies:
             r = random.choice(self.proxies)
-        rape_nigga = {
+        n = {
             "http": "http://%s" % r,
-            "http": "http://%s" % r
         } if USE_PROXIES else None
         if captcha:
             print('solved captcha!')
@@ -111,7 +110,7 @@ class rblxGoldHandler(websocket.WebSocketApp):
                 headers={
                     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
                 },
-                proxies=rape_nigga)
+                proxy=n)
             if join_game.status_code == 200:
                 print('%s joined rain!' % sid)
             else:
