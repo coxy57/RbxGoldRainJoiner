@@ -51,6 +51,7 @@ class AutoJoinerHandler:
             }
         })
         if "taskId" not in captcha_created.text:
+            print('Failed to solve captcha',captcha_created.text)
             return False
         taskid = captcha_created.json()['taskId']
         while True:
